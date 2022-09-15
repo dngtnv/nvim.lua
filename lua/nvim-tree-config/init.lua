@@ -43,12 +43,12 @@ nvimtree.setup {
     diagnostics = {
         enable = false,
     },
-    log = {
+    --[[ log = {
         enable = true,
         truncate = true,
         types = {
             git = true,
             profile = true,
         },
-    },
+    }, ]]
 }
