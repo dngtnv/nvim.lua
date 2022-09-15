@@ -18,15 +18,15 @@ nvimtree.setup {
         relativenumber = false,
         signcolumn = 'yes',
         float = {
-          enable = false,
-          open_win_config = {
-            relative = "editor",
-            border = "rounded",
-            width = 30,
-            height = 30,
-            row = 1,
-            col = 1,
-          },
+            enable = false,
+            open_win_config = {
+                relative = "editor",
+                border = "rounded",
+                width = 30,
+                height = 30,
+                row = 1,
+                col = 1,
+            },
         },
     },
     renderer = {
@@ -42,5 +42,13 @@ nvimtree.setup {
     },
     diagnostics = {
         enable = false,
-  }
+    },
+    log = {
+        enable = true,
+        truncate = true,
+        types = {
+            git = true,
+            profile = true,
+        },
+    },
 }
