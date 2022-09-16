@@ -63,7 +63,7 @@ map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Outline
---keymap("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
+map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
 
 -- Hover Doc
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
