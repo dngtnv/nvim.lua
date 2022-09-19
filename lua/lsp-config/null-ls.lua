@@ -10,8 +10,14 @@ local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.code_actions.eslint_d,
 	null_ls.builtins.formatting.prettierd.with({
-        extra_args = { "--no-semi", "--single-quote", "jsx-single-quote", "--style", "{IndentWidth: 4, ColumnLimit: 120}" }
-    }),
+		extra_args = {
+			"--no-semi",
+			"--single-quote",
+			"jsx-single-quote",
+			"--style",
+			"{IndentWidth: 4, ColumnLimit: 120}",
+		},
+	}),
 	-- null_ls.builtins.diagnostics.luacheck,
 	null_ls.builtins.formatting.stylua,
 	-- null_ls.builtins.formatting.fixjson,
@@ -33,7 +39,7 @@ null_ls.setup({
 					vim.lsp.buf.format({
 						timeout_ms = 3000,
 						bufnr = bufnr,
-						filter = function(client)
+						filter = function()
 							return client.name == "null-ls"
 						end,
 					})
