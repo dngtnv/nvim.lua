@@ -1,17 +1,20 @@
 local set = vim.opt
 
 --vim.cmd('autocmd!')
-vim.scriptencoding = 'utf-8'
+vim.scriptencoding = "utf-8"
 vim.wo.number = true
 
+set.guifont = "CaskaydiaCove Nerd Font Mono:h12"
 set.backup = false
-set.clipboard = 'unnamedplus'
-set.completeopt = { 'menuone', 'noselect' }
-set.conceallevel = 0
-set.mouse = 'a'
+set.clipboard = "unnamedplus"
+set.completeopt = { "menuone", "noselect" }
+set.concealcursor = "nc" -- Hide * markup for bold and italic
+set.conceallevel = 0 -- Hide * markup for bold and italic
+set.confirm = true -- Confirm to save changes before exiting modified buffer
+set.mouse = "a"
 set.pumheight = 10
-set.showcmd = false 
-set.showmode = false 
+set.showcmd = false
+set.showmode = false
 set.showtabline = 2
 set.cmdheight = 1
 
@@ -28,11 +31,13 @@ set.autoindent = true
 set.smartindent = true
 set.smarttab = true
 set.breakindent = true
-set.backspace = 'start,eol,indent'
-set.wildignore:append { '*/node_modules/*' }
+set.backspace = "start,eol,indent"
+set.wildignore:append({ "*/node_modules/*" })
 
 set.swapfile = false
 set.undofile = true
+set.undolevels = 10000
+set.updatetime = 200 -- Save swap file and trigger CursorHold
 set.writebackup = false
 set.expandtab = true
 
@@ -43,18 +48,46 @@ set.laststatus = 2
 set.wrap = false
 set.scrolloff = 8
 set.sidescrolloff = 8
-set.fileencoding = 'utf-8'
+set.fileencoding = "utf-8"
 set.termguicolors = true
-set.inccommand = 'split'
+set.inccommand = "split"
+set.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
 set.relativenumber = true
 set.cursorline = true
 set.winblend = 0
-set.wildoptions = 'pum'
+set.wildoptions = "pum"
 set.pumblend = 5
-set.background = 'dark'
+set.background = "dark"
 set.number = true
 set.numberwidth = 4
-set.signcolumn = 'yes'
+set.signcolumn = "yes"
 
 set.hidden = true
+
+-- don't load the plugins below
+local builtins = {
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"fzf",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"matchit",
+	"matchparen",
+	"logiPat",
+	"rrhelper",
+	--"netrw",
+	--"netrwPlugin",
+	--"netrwSettings",
+	--"netrwFileHandlers",
+}
+
+for _, plugin in ipairs(builtins) do
+	vim.g["loaded_" .. plugin] = 1
+end
