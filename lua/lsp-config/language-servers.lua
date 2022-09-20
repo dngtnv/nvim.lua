@@ -1,13 +1,13 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"html",
-		"cssls",
-		"tsserver",
-		"tailwindcss",
-		"emmet_ls",
-		"sumneko_lua",
-	},
+    ensure_installed = {
+        "html",
+        "cssls",
+        "tsserver",
+        "tailwindcss",
+        "emmet_ls",
+        "sumneko_lua",
+    },
 })
 local nvim_lsp = require("lspconfig")
 
@@ -21,13 +21,13 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts) ]]
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr) -- (client, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	--[[ vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    --[[ vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
 	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
@@ -41,31 +41,41 @@ local on_attach = function(_, bufnr) -- (client, bufnr)
 	vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts) ]]
-	vim.keymap.set("n", "<space>fm", vim.lsp.buf.format, bufopts)
+    vim.keymap.set("n", "<space>fm", vim.lsp.buf.format, bufopts)
 end
 
 local lsp_flags = {
-	-- This is the default in Nvim 0.7+
-	debounce_text_changes = 150,
+    -- This is the default in Nvim 0.7+
+    debounce_text_changes = 150,
 }
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
+nvim_lsp.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    root_dir = function()
+        return vim.loop.cwd()
+    end,
+})
+
 local servers = {
-	"html",
-	"cssls",
-	"tsserver",
-	"tailwindcss",
-	"emmet_ls",
-	"sumneko_lua",
+    "html",
+    "cssls",
+    -- "tsserver",
+    "eslint",
+    "tailwindcss",
+    "emmet_ls",
+    "sumneko_lua",
 }
 
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		flags = lsp_flags,
-	})
+    nvim_lsp[lsp].setup({
+        on_attach = on_attach,
+        capabilities = capabilities,
+        flags = lsp_flags,
+    })
 end
