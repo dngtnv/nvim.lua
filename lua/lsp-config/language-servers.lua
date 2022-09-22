@@ -11,6 +11,25 @@ require("mason-lspconfig").setup({
 })
 local nvim_lsp = require("lspconfig")
 
+-- Custom diagnostics sign & message
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = "●", -- Could be '■', '▎', 'x'
+        source = "always", -- Or "if_many"
+    },
+    float = {
+        source = "always", -- Or "if_many"
+    },
+    signs = true,
+    underline = true,
+    update_in_insert = true, -- Update diagnostics in insert mode
+    severity_sort = false,
+})
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 --[[ local opts = { noremap = true, silent = true }
@@ -21,6 +40,21 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts) ]]
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr) -- (client, bufnr)
+    -- Show diagnostic on hover
+    --[[ vim.api.nvim_create_autocmd("CursorHold", {
+        buffer = bufnr,
+        callback = function()
+            local opts = {
+                focusable = false,
+                close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                border = "rounded",
+                source = "always",
+                prefix = " ",
+                scope = "cursor",
+            }
+            vim.diagnostic.open_float(nil, opts)
+        end,
+    }) ]]
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
