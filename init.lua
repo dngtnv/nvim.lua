@@ -1,5 +1,5 @@
 require("packer-config")
-require("settings")
+require("options")
 require("mappings")
 require("dashboard-config")
 require("colorschemes-config.tokyonight")

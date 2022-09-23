@@ -4,7 +4,7 @@ local set = vim.opt
 vim.scriptencoding = "utf-8"
 vim.wo.number = true
 
-set.guifont = "CaskaydiaCove Nerd Font Mono:h12"
+set.guifont = "CaskaydiaCove NF Mono:h12"
 set.backup = false
 set.clipboard = "unnamedplus"
 set.completeopt = { "menuone", "noselect" }
