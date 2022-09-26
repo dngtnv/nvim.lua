@@ -48,6 +48,7 @@ return packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- Adds indentation guides to all lines
 	use({ "akinsho/toggleterm.nvim", tag = "*" }) -- Toggle terminal in nvim
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Syntax highlighting
+	use("JoosepAlviste/nvim-ts-context-commentstring") -- Comment for ts file
 	-- Treesitter modules --
 	use("p00f/nvim-ts-rainbow") -- Rainbow parentheses
 	use({
