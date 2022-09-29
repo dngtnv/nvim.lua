@@ -2,6 +2,20 @@
 local luasnip = require("luasnip")
 local cmp = require("cmp")
 local lspkind = require("lspkind")
+
+local function border(hl_name)
+	return {
+		{ "╭", hl_name },
+		{ "─", hl_name },
+		{ "╮", hl_name },
+		{ "│", hl_name },
+		{ "╯", hl_name },
+		{ "─", hl_name },
+		{ "╰", hl_name },
+		{ "│", hl_name },
+	}
+end
+
 -- nvim-cmp setup
 cmp.setup({
 	snippet = {
@@ -43,9 +57,13 @@ cmp.setup({
 	},
 	window = {
 		completion = {
+			border = border("CmpBorder"), -- Add border
 			winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
 			col_offset = 0,
 			side_padding = 0,
+		},
+		documentation = {
+			border = border("CmpBorder"), -- Add border for documentation
 		},
 	},
 	formatting = {
