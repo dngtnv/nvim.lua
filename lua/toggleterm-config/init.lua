@@ -4,6 +4,8 @@ if not status_ok then
 	return
 end
 
+local M = {}
+
 toggleterm.setup({
 	-- size can be a number or function which is passed the current terminal
 	-- size = 20 \ function(term)
@@ -59,6 +61,25 @@ local htop = Terminal:new({
 	direction = "float",
 	hidden = true,
 })
-function _HTOP_TOGGLE()
+function M.htop_toggle()
 	htop:toggle()
 end
+
+-- Commitizen
+local git_cz = "git cz"
+
+local git_commit = Terminal:new({
+	cmd = git_cz,
+	dir = "git_dir",
+	hidden = true,
+	direction = "float",
+	float_opts = {
+		border = "single",
+	},
+})
+
+function M.git_commit_toggle()
+	git_commit:toggle()
+end
+
+return M
