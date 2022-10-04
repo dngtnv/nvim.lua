@@ -9,13 +9,15 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local sources = {
 	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.code_actions.eslint_d,
-	null_ls.builtins.formatting.prettierd.with({
+	null_ls.builtins.formatting.prettier.with({
 		extra_args = {
 			"--no-semi",
 			"--single-quote",
-			"jsx-single-quote",
+			"--jsx-single-quote",
 			"--style",
-			"{IndentWidth: 4, ColumnLimit: 120}",
+            "--tab-width 4",
+            "--use-tabs",
+            "--arrow-parens avoid",
 		},
 	}),
 	-- null_ls.builtins.diagnostics.luacheck,
