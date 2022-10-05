@@ -1,4 +1,4 @@
-local db = require "dashboard"
+local db = require("dashboard")
 db.custom_header = {
 	"",
 	"",
@@ -35,14 +35,15 @@ db.custom_center = {
 	},
 	{
 		icon = " ",
-        desc = "Find Word          ",
-        action = "Telescope live_grep",
-        shortcut = "SPC fg"
-    },
-    {
+		desc = "Find Word          ",
+		action = "Telescope live_grep",
+		shortcut = "SPC fg",
+	},
+	{
 		icon = " ",
 		desc = "Configure Neovim    ",
-		action = "edit ~/.config/nvim/init.lua",
+		-- action = "edit ~/.config/nvim/init.lua",
+		action = "NvimTreeFindFileToggle ~/.config/nvim/",
 		shortcut = "    ",
 	},
 	{

@@ -8,7 +8,7 @@ treesitter.setup({
 		enable = true,
 	},
 	-- A list of parser names, or "all"
-	ensure_installed = { "html", "css", "javascript", "json", "lua" },
+	ensure_installed = { "html", "css", "scss", "tsx", "typescript", "javascript", "json", "lua" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -31,6 +31,7 @@ treesitter.setup({
 		-- the name of the parser)
 		-- list of language that will be disabled
 		--disable = { "c", "rust" },
+		disable = {},
 
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
