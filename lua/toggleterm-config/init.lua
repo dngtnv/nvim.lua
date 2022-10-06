@@ -59,7 +59,7 @@ local htop = Terminal:new({
     direction = "float",
     hidden = true,
 })
-function _HTOP_TOGGLE()
+function _G.HTOP_TOGGLE()
     htop:toggle()
 end
 
@@ -76,6 +76,6 @@ local git_commit = Terminal:new({
     },
 })
 
-function _GIT_COMMIT_TOGGLE()
+function _G.GIT_COMMIT_TOGGLE()
     git_commit:toggle()
 end
