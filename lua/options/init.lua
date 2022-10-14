@@ -4,6 +4,11 @@ local set = vim.opt
 vim.scriptencoding = "utf-8"
 vim.wo.number = true
 
+-- context-indent-blankline-highlighted by treesitter
+set.list = true
+-- set.listchars:append("space:.")
+-- set.listchars:append("eol:↴")
+
 set.guifont = "CaskaydiaCove NF Mono:h12"
 set.backup = false
 set.clipboard = "unnamedplus"
@@ -20,8 +25,9 @@ set.cmdheight = 1
 
 set.expandtab = true
 set.smarttab = true
-set.shiftwidth = 4
-set.tabstop = 4
+set.shiftwidth = 2
+set.tabstop = 2
+set.softtabstop = 2
 
 set.hlsearch = true
 set.incsearch = true
@@ -67,27 +73,27 @@ set.hidden = true
 
 -- don't load the plugins below
 local builtins = {
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "fzf",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "matchit",
-    "matchparen",
-    "logiPat",
-    "rrhelper",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"fzf",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"matchit",
+	"matchparen",
+	"logiPat",
+	"rrhelper",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
 }
 
 for _, plugin in ipairs(builtins) do
-    vim.g["loaded_" .. plugin] = 1
+	vim.g["loaded_" .. plugin] = 1
 end
