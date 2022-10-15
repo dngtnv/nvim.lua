@@ -16,7 +16,7 @@ local sources = {
 			"--jsx-single-quote",
 			"--style",
 			"--tab-width 2",
-			"--printWidth 80",
+			"--print-width 80",
 			"--use-tabs false",
 			"--trailingComma es5",
 			"--bracketSpacing true",

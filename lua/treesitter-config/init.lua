@@ -53,7 +53,7 @@ treesitter.setup({
 			},
 		},
 	},
-	indent = { enable = true, disable = { "html", "tsx", "jsx", "yaml" } },
+	indent = { enable = true, disable = { "yaml" } },
 	rainbow = {
 		enable = true,
 		extended_mode = true,
