@@ -1,5 +1,46 @@
 local db = require("dashboard")
-db.custom_header = {
+db.setup({
+  theme = "hyper",
+  config = {
+    week_header = {
+      enable = true,
+    },
+    shortcut = {
+      { desc = " Update", group = "@property", action = "PackerSync", key = "u" },
+      {
+        desc = " Browse Files",
+        group = "DiagnosticHint",
+        action = "NvimTreeToggle",
+        key = "SPC e",
+      },
+      {
+        desc = " Files",
+        group = "Label",
+        action = "Telescope find_files",
+        key = "f",
+      },
+      {
+        desc = " Exit",
+        group = "Number",
+        action = "quit",
+        key = "q",
+      },
+      --[[ {
+        desc = " Apps",
+        group = "DiagnosticHint",
+        action = "Telescope app",
+        key = "a",
+      },
+      {
+        desc = " dotfiles",
+        group = "Number",
+        action = "Telescope dotfiles",
+        key = "d",
+      }, ]]
+    },
+  },
+})
+--[[ db.custom_header = {
 	"",
 	"",
 	"",
@@ -51,4 +92,4 @@ db.custom_center = {
 		desc = "Exit Neovim              ",
 		action = "quit",
 	},
-}
+} ]]
