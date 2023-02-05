@@ -1,9 +1,10 @@
-local map = vim.api.nvim_set_keymap
+-- local map = vim.api.nvim_set_keymap
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 
-map("n", "<leader>e", ":NvimTreeToggle<CR>", opts) -- { Space + e }
+map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope mappings --
 map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
@@ -34,37 +35,71 @@ map("n", "<A-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", opts)
 map("n", "<A-c>", "<Cmd>:Bdelete!<CR>", opts)
 
 -- Lspsaga --
--- Lsp finder find the symbol definition implement reference
--- if there is no implement it will hide
--- when you use action in finder like open vsplit then you can
--- use <C-t> to jump back
+-- LSP finder - Find the symbol's definition
+-- If there is no definition, it will instead be hidden
+-- When you use an action in finder like "open vsplit",
+-- you can use <C-t> to jump back
 map("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
 
 -- Code action
-map("v", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
 map("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
+map("v", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
 
 -- Rename
 map("n", "gr", "<cmd>Lspsaga rename<CR>", opts)
 
 -- Peek Definition
--- you can edit the definition file in this flaotwindow
--- also support open/vsplit/etc operation check definition_action_keys
--- support tagstack C-t jump back
+-- you can edit the definition file in this floating window
+-- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
+-- It also supports tagstack
+-- Use <C-t> to jump back
 map("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
+-- Go to definition
+-- map("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
 
 -- Show line diagnostics
-map("n", "<leader>cd", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
+-- You can pass argument ++unfocus to
+-- unfocus the show_line_diagnostics floating window
+map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
 
 -- Show cursor diagnostic
-map("n", "<leader>cd", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
+-- Like show_line_diagnostics, it supports passing the ++unfocus argument
+map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
 
--- Diagnsotic jump can use `<c-o>` to jump back
+-- Show buffer diagnostics
+map("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", opts)
+
+-- Diagnsotic jump
+-- You can use <C-o> to jump back to your previous location
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
--- Outline
-map("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
+-- Diagnostic jump with filters such as only jumping to an error
+map("n", "[E", function()
+	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+map("n", "]E", function()
+	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+end, opts)
+
+-- Toggle outline
+map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", opts)
 
 -- Hover Doc
+-- If there is no hover doc,
+-- there will be a notification stating that
+-- there is no information available.
+-- To disable it just use ":Lspsaga hover_doc ++quiet"
+-- Pressing the key twice will enter the hover window
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
+
+-- If you want to keep the hover window in the top right hand corner,
+-- you can pass the ++keep argument
+-- Note that if you use hover with ++keep, pressing this key again will
+-- close the hover window. If you want to jump to the hover window
+-- you should use the wincmd command "<C-w>w"
+-- map("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>", opts)
+
+-- Call hierarchy
+map("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>", opts)
+map("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>", opts)

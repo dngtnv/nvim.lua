@@ -12,8 +12,8 @@ local sources = {
   null_ls.builtins.formatting.prettierd.with({
     extra_args = {
       "--no-semi",
-      --[[ "--single-quote",
-			"--jsx-single-quote", ]]
+      "--single-quote",
+      "--jsx-single-quote",
       "--style",
       "--tab-width 2",
       "--print-width 80",
