@@ -1,8 +1,9 @@
-local fn = vim.fn
 -- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local is_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	is_bootstrap = true
+	PACKER_BOOTSTRAP = vim.fn.system({
 		"git",
 		"clone",
 		"--depth",
@@ -20,7 +21,7 @@ if not status_ok then
 end
 pcall(require, "impatient")
 
-return packer.startup(function(use)
+packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Packages manager
 	-- PERFORMANCE --
 	use({ "lewis6991/impatient.nvim" })
@@ -64,4 +65,25 @@ return packer.startup(function(use)
 		branch = "main",
 		event = "BufRead",
 	}) -- Lsp plugin
+
+	if is_bootstrap then
+		require("packer").sync()
+	end
 end)
+
+if is_bootstrap then
+	print("==================================")
+	print("    Plugins are being installed")
+	print("    Wait until Packer completes,")
+	print("       then restart nvim")
+	print("==================================")
+	return
+end
+
+-- Automatically source and re-compile packer whenever you save this init.lua
+local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+	command = "source <afile> | silent! LspStop | silent! LspStart | PackerCompile",
+	group = packer_group,
+	pattern = vim.fn.expand("$MYVIMRC"),
+})
