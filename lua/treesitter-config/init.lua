@@ -8,7 +8,18 @@ treesitter.setup({
 		enable = true,
 	},
 	-- A list of parser names, or "all"
-	ensure_installed = { "html", "css", "scss", "tsx", "typescript", "javascript", "json", "lua" },
+	ensure_installed = {
+		"html",
+		"css",
+		"scss",
+		"tsx",
+		"typescript",
+		"javascript",
+		"json",
+		"lua",
+		"markdown_inline",
+		"markdown",
+	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
