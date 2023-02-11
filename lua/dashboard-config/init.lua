@@ -8,6 +8,12 @@ db.setup({
     shortcut = {
       { desc = " Update", group = "@property", action = "PackerSync", key = "u" },
       {
+        desc = " New File",
+        group = "number",
+        action = "enew",
+        key = "SPC n",
+      },
+      {
         desc = " Browse Files",
         group = "DiagnosticHint",
         action = "NvimTreeToggle",
