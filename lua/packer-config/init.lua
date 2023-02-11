@@ -59,5 +59,9 @@ return packer.startup(function(use)
 	use("famiu/bufdelete.nvim") -- Buffer delete without messup your layout
 	use("numToStr/Comment.nvim") -- Commenting plugin
 	use("lewis6991/gitsigns.nvim") -- Git decorations
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- Lsp plugin
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		event = "BufRead",
+	}) -- Lsp plugin
 end)
