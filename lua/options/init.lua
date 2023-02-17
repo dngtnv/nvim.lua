@@ -9,6 +9,7 @@ set.list = true
 -- set.listchars:append("space:.")
 -- set.listchars:append("eol:↴")
 
+-- set.guicursor = "" -- Fat cursor
 set.guifont = "CaskaydiaCove NF Mono:h12"
 set.backup = false
 set.clipboard = "unnamedplus"
@@ -41,6 +42,8 @@ set.backspace = "start,eol,indent"
 set.wildignore:append({ "*/node_modules/*" })
 
 set.swapfile = false
+set.backup = false
+set.backup = false
 set.undofile = true
 set.undolevels = 10000
 set.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -56,6 +59,7 @@ set.scrolloff = 8
 set.sidescrolloff = 8
 set.fileencoding = "utf-8"
 set.termguicolors = true
+-- set.colorcolumn = "80"  -- show column line
 set.inccommand = "split"
 set.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
