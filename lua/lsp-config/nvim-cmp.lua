@@ -1,5 +1,19 @@
 -- luasnip setup
 local luasnip = require("luasnip")
+-- some shorthands...
+local s = luasnip.snippet
+local t = luasnip.text_node
+local i = luasnip.insert_node
+
+luasnip.add_snippets("typescriptreact", {
+	s("log", {
+		t("console.log("),
+		i(1, ""),
+		t(","),
+		i(2, ""),
+		t(")"),
+	}),
+})
 local cmp = require("cmp")
 local lspkind = require("lspkind")
 
@@ -30,6 +44,9 @@ cmp.setup({
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
+	},
+	completion = {
+		completeopt = "menu,menuone,noinsert",
 	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -62,6 +79,7 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
+		{ name = "buffer" },
 	},
 	window = {
 		completion = {
