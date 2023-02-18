@@ -4,9 +4,10 @@ if not status_ok then
   return
 end
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
 
 local sources = {
+  require("typescript.extensions.null-ls.code-actions"),
   null_ls.builtins.diagnostics.eslint_d,
   null_ls.builtins.code_actions.eslint_d,
   null_ls.builtins.formatting.prettierd.with({
@@ -26,7 +27,7 @@ local sources = {
   -- null_ls.builtins.diagnostics.luacheck,
   null_ls.builtins.formatting.stylua,
   -- null_ls.builtins.formatting.fixjson,
-  null_ls.builtins.code_actions.gitsigns,
+  -- null_ls.builtins.code_actions.gitsigns, -- Duplicate with eslind_d
 }
 
 null_ls.setup({
@@ -41,6 +42,8 @@ null_ls.setup({
         callback = function()
           -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
           --vim.lsp.buf.formatting_sync()
+          require("typescript").actions.organizeImports({ sync = true })
+          require("typescript").actions.addMissingImports({ sync = true })
           vim.lsp.buf.format({
             timeout_ms = 3000,
             bufnr = bufnr,
