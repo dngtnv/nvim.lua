@@ -5,7 +5,6 @@ require("mason-lspconfig").setup({
 		"cssls",
 		"tsserver",
 		"tailwindcss",
-		"emmet_ls",
 		"lua_ls",
 	},
 })
@@ -87,22 +86,12 @@ local lsp_flags = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-nvim_lsp.tsserver.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	flags = lsp_flags,
-	root_dir = function()
-		return vim.loop.cwd()
-	end,
-})
-
 local servers = {
 	"html",
 	"cssls",
 	"tsserver",
 	"eslint",
 	"tailwindcss",
-	"emmet_ls",
 	"lua_ls",
 }
 
