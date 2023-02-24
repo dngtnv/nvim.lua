@@ -1,5 +1,9 @@
 local set = vim.opt
 
+-- Off auto comment new line
+vim.cmd("autocmd BufEnter * set formatoptions-=cro")
+vim.cmd("autocmd BufEnter * setlocal formatoptions-=cro")
+
 --vim.cmd('autocmd!')
 vim.scriptencoding = "utf-8"
 vim.wo.number = true
