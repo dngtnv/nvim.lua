@@ -9,6 +9,7 @@ map("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 -- Telescope mappings --
 map("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 map("n", "<leader>fg", ":Telescope live_grep<CR>", opts)
+map("n", "<leader>ft", ":TodoTelescope<CR>", opts)
 
 -- Dashboard mappings --
 map("n", "<leader>n", ":enew<CR>", opts)
@@ -76,10 +77,10 @@ map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Diagnostic jump with filters such as only jumping to an error
 map("n", "[E", function()
-  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
 map("n", "]E", function()
-  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, opts)
 
 -- Toggle outline

@@ -64,11 +64,16 @@ packer.startup(function(use)
 	use("lukas-reineke/indent-blankline.nvim") -- Adds indentation guides to all lines
 	use({ "akinsho/toggleterm.nvim", tag = "*" }) -- Toggle terminal in nvim
 	use("JoosepAlviste/nvim-ts-context-commentstring") -- Comment for ts file
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		event = "BufReadPost",
+	}) -- Highlight TODOs
 	-- Treesitter modules --
 	use("p00f/nvim-ts-rainbow") -- Rainbow parentheses
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/plenary.nvim" } },
+		requires = { "nvim-lua/plenary.nvim" },
 	}) -- Files finder
 	use("famiu/bufdelete.nvim") -- Buffer delete without messup your layout
 	use("numToStr/Comment.nvim") -- Commenting plugin
