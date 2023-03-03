@@ -14,7 +14,7 @@ lualine.setup({
 			statusline = { "NvimTree", "toggleterm" },
 		},
 		ignore_focus = { "NvimTree", "toggleterm" },
-		globalstatus = false,
+		globalstatus = true, -- one statusline for all windows
 	},
 	sections = {
 		lualine_a = { "mode" },
@@ -24,7 +24,7 @@ lualine.setup({
 				"filename",
 				file_status = true,
 				newfile_status = false,
-				path = 1, -- [0,1,2,3]
+				path = 0, -- [0,1,2,3]
 				shorting_target = 40,
 				sysbols = {
 					modified = "[+]",
