@@ -18,7 +18,8 @@ nvimtree.setup({
 		relativenumber = false,
 		signcolumn = "yes",
 		float = {
-			enable = false,
+			enable = true,
+			quit_on_focus_loss = true,
 			open_win_config = {
 				relative = "editor",
 				border = "rounded",
@@ -45,7 +46,10 @@ nvimtree.setup({
 		custom = { "node_modules", "^.git$" },
 	},
 	diagnostics = {
-		enable = false,
+		enable = true,
+		show_on_dirs = true,
+		show_on_open_dirs = true,
+		debounce_delay = 50,
 	},
 	git = {
 		enable = true,
