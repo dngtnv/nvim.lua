@@ -7,27 +7,35 @@
 end
 
 ColorMyBoard() ]]
-local status_ok, tokyo = pcall(require, "tokyonight")
-if not status_ok then
-  print("Tokyonight colorscheme is not installed")
-  return
-end
 local toggle = true
 
-function ToggleAcrylic()
-  if toggle then
-    tokyo.setup({
-      transparent = true,
-    })
-    vim.cmd.colorscheme("tokyonight")
-    toggle = false
-  else
-    tokyo.setup({
-      transparent = false,
-    })
-    vim.cmd.colorscheme("tokyonight")
-    toggle = true
-  end
+function ToggleAcrylic(theme)
+	if theme == "tokyonight" then
+		require(theme).setup({
+			transparent = toggle,
+			-- Background styles. Can be "dark", "transparent" or "normal"
+			styles = {
+				sidebars = "transparent",
+				floats = "transparent",
+			},
+		})
+		vim.cmd.colorscheme(theme)
+		toggle = not toggle
+	elseif theme == "catppuccin" then
+		require(theme).setup({
+			transparent_background = toggle,
+		})
+		vim.cmd.colorscheme(theme)
+		toggle = not toggle
+	else
+		require(theme).setup({
+			transparent = false,
+		})
+		require(theme).setup({
+			transparent_background = false,
+		})
+		vim.cmd.colorscheme(theme)
+	end
 end
 
-ToggleAcrylic()
+ToggleAcrylic("tokyonight")
