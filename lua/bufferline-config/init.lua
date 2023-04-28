@@ -10,11 +10,11 @@ bufferline.setup({
 		numbers = "none", -- ordinal, buffer_id, both
 		number_style = "",
 		close_command = "Bdelete! %d",
-		right_mouse_command = "Bdelete! %d",
+		right_mouse_command = "vertical sbuffer %d",
 		left_mouse_command = "buffer %d",
-		middle_mouse_command = nil,
+		middle_mouse_command = "Bdelete! %d",
 		indicator = {
-			icon = "",
+			icon = "▎",
 			style = "icon", --icon, underline, none
 		},
 		buffer_close_icon = "",
@@ -38,14 +38,25 @@ bufferline.setup({
 		diagnostics = false,
 		diagnostics_update_in_insert = false,
 		offsets = { { filetype = "NvimTree", text = "", text_align = "left", separator = true } },
-		color_icons = true,
+		--[[ color_icons = true,
+		--get_element_icon = function(element)
+			-- element consists of {filetype: string, path: string, extension: string, directory: string}
+			-- This can be used to change how bufferline fetches the icon
+			-- for an element e.g. a buffer or a tab.
+			-- e.g.
+			local icon, hl = require("nvim-web-devicons").get_icon_by_filetype(opts.filetype, { default = false })
+			return icon, hl
+			-- or
+			[[ local custom_map = {my_thing_ft: {icon = "my_thing_icon", hl}}
+      return custom_map[element.filetype]
+		end, ]]
 		show_buffer_icon = true,
 		show_buffer_close_icons = true,
 		show_buffer_default_icon = true,
-		show_close_icon = false,
+		show_close_icon = true,
 		show_tab_indicators = true,
 		persist_buffer_sort = true,
-		separator_style = "thin", -- slant, padded_slant, thick, thin, or custom characters {'|', '|'}
+		separator_style = "thin", -- "slant" | "slope" | "thick" | "thin" | or custom characters {'|', '|'}
 		enforce_regular_tabs = true,
 		always_show_bufferline = true,
 	},
