@@ -31,6 +31,7 @@ packer.startup(function(use)
 	use({ "akinsho/bufferline.nvim", tag = "v3.*" }) -- Tabpage
 	use("EdenEast/nightfox.nvim") -- THEME
 	use("folke/tokyonight.nvim") -- THEME
+	use({ "catppuccin/nvim", as = "catppuccin" }) -- THEME
 	use("nvim-lualine/lualine.nvim") -- Bottom status bar
 	use({ "glepnir/dashboard-nvim", event = "VimEnter" }) -- Neovim startup
 	-- LSP --
@@ -57,7 +58,7 @@ packer.startup(function(use)
 		after = { "copilot.lua" },
 	}) -- Transform copilot.lua into a cmp source ]]
 	-- Utilities --
-	use("norcalli/nvim-colorizer.lua") -- Color highlighter
+	use({ "NvChad/nvim-colorizer.lua" }) -- Maintained fork of the fastest Neovim colorizer
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }) -- Syntax highlighting
 	use("windwp/nvim-autopairs") -- Autopairs
 	use("windwp/nvim-ts-autotag") -- Autotag & autorename
