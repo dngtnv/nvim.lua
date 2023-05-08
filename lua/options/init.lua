@@ -9,7 +9,7 @@ vim.scriptencoding = "utf-8"
 vim.wo.number = true
 
 -- context-indent-blankline-highlighted by treesitter
-set.list = true
+-- set.list = true
 -- set.listchars:append("space:.")
 -- set.listchars:append("eol:↴")
 
@@ -22,6 +22,7 @@ set.concealcursor = "nc" -- Hide * markup for bold and italic
 set.conceallevel = 0 -- Hide * markup for bold and italic
 set.confirm = true -- Confirm to save changes before exiting modified buffer
 set.mouse = "a"
+set.mousemoveevent = true
 set.pumheight = 10
 set.showcmd = false
 set.showmode = false
