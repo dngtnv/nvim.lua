@@ -5,8 +5,15 @@ if not status_ok then
 end
 
 indentbl.setup({
+	indent_level = 10, -- default: 10
+	char = "", -- [ '│','▏', '▎']
+	context_char = "│",
+	-- char_list = { "|", "¦", "┆", "┊" },
+	-- char_list_blankline = { "|", "¦", "┆", "┊" },
 	space_char_blankline = " ",
-	show_end_of_line = true,
+	max_indent_increase = 1,
+	show_trailing_blankline_indent = false,
+	show_end_of_line = false,
 	show_current_context = true,
 	show_current_context_start = false,
 	context_pattern = {
@@ -31,4 +38,11 @@ indentbl.setup({
 		"import_statement",
 		"operation_type",
 	},
+	filetype_exclude = {
+		"help",
+		"dashboard",
+		"packer",
+		"NvimTree",
+	},
+	buftype_exclude = { "terminal", "nofile" },
 })
