@@ -1,3 +1,4 @@
 plugin
-perf.log
-lua/.luarc.json
+startup.log
+.luarc.json
+lazy-lock.json
