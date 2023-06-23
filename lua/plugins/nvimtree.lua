@@ -123,6 +123,7 @@ return {
         end,
       },
       renderer = {
+        root_folder_label = false,
         add_trailing = false,
         group_empty = false,
         highlight_git = false,
@@ -141,7 +142,7 @@ return {
             modified = true,
           },
           glyphs = {
-            default = "",
+            default = "󰈚",
             symlink = "",
             bookmark = "",
             modified = "●",
@@ -184,14 +185,6 @@ return {
       filesystem_watchers = {
         enable = true,
       },
-      --[[ log = {
-        enable = true,
-        truncate = true,
-        types = {
-            git = true,
-            profile = true,
-        },
-    }, ]]
     })
   end,
 }
