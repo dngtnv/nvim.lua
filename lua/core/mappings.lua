@@ -5,6 +5,10 @@ local opts = { noremap = true, silent = true }
 -- Remove highlight
 map("n", "<Esc>", ":noh<CR>", opts)
 
+-- Toggle comment
+map("n", "<leader>/", ":lua require('Comment.api').toggle.linewise.current()<CR>", opts)
+map("v", "<leader>/", ":lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>", opts)
+
 -- Remap splits navigation to just CTRL + hjkl
 map("n", "<C-h>", "<C-w>h", opts)
 map("n", "<C-j>", "<C-w>j", opts)
