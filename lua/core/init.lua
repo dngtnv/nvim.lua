@@ -15,6 +15,10 @@ vim.wo.number = true
 
 -- set.guicursor = "" -- Fat cursor
 -- set.guifont = "CaskaydiaCove NF Mono:h12"
+
+-- disable nvim intro
+set.shortmess:append("sI")
+
 set.backup = false
 set.clipboard = "unnamedplus"
 set.completeopt = { "menuone", "noselect" }
@@ -37,6 +41,7 @@ set.softtabstop = 2
 
 set.hlsearch = true
 set.incsearch = true
+set.fillchars = { eob = " " }
 set.ignorecase = true
 set.smartcase = true
 set.autoindent = true
@@ -49,6 +54,7 @@ set.wildignore:append({ "*/node_modules/*" })
 set.swapfile = false
 set.backup = false
 set.backup = false
+set.timeoutlen = 400
 set.undofile = true
 set.undolevels = 10000
 set.updatetime = 200 -- Save swap file and trigger CursorHold
@@ -58,7 +64,7 @@ set.expandtab = true
 set.title = true
 set.splitbelow = true
 set.splitright = true
-set.laststatus = 2
+set.laststatus = 3
 set.wrap = false
 set.scrolloff = 8
 set.sidescrolloff = 8
@@ -75,33 +81,54 @@ set.wildoptions = "pum"
 set.pumblend = 5
 set.background = "dark"
 set.number = true
-set.numberwidth = 4
+set.numberwidth = 2
+set.ruler = false
 set.signcolumn = "yes"
 
 set.hidden = true
 
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+set.whichwrap:append("<>[]hl")
+
+-- disable some default providers
+for _, provider in ipairs({ "node", "perl", "python3", "ruby" }) do
+  vim.g["loaded_" .. provider .. "_provider"] = 0
+end
+
+-- autocmd --
+local autocmd = vim.api.nvim_create_autocmd
+
+-- dont list quickfix buffers
+autocmd("FileType", {
+  pattern = "qf",
+  callback = function()
+    vim.opt_local.buflisted = false
+  end,
+})
+
 -- don't load the plugins below
 local builtins = {
-	"gzip",
-	"zip",
-	"zipPlugin",
-	"fzf",
-	"tar",
-	"tarPlugin",
-	"getscript",
-	"getscriptPlugin",
-	"vimball",
-	"vimballPlugin",
-	"2html_plugin",
-	"matchit",
-	"logiPat",
-	"logipat",
-	"rrhelper",
-	"netrw",
-	"netrwPlugin",
-	"netrwSettings",
-	"netrwFileHandlers",
-	--[[ "tohtml",
+  "gzip",
+  "zip",
+  "zipPlugin",
+  "fzf",
+  "tar",
+  "tarPlugin",
+  "getscript",
+  "getscriptPlugin",
+  "vimball",
+  "vimballPlugin",
+  "2html_plugin",
+  "matchit",
+  "logiPat",
+  "logipat",
+  "rrhelper",
+  "netrw",
+  "netrwPlugin",
+  "netrwSettings",
+  "netrwFileHandlers",
+  --[[ "tohtml",
   "getriptPlugin",
   "spellfile_plugin",
   "tutor",
@@ -116,5 +143,5 @@ local builtins = {
 }
 
 for _, plugin in ipairs(builtins) do
-	vim.g["loaded_" .. plugin] = 1
+  vim.g["loaded_" .. plugin] = 1
 end
