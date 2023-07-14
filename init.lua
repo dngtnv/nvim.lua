@@ -19,6 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 local opts = {}
 
 require("core.init")
-require("core.mappings")
 require("lazy").setup("plugins", opts)
+require("core.mappings")
 require("colorschemes.config")

@@ -1,5 +1,6 @@
 return {
   "nvim-tree/nvim-tree.lua",
+  cmd = "NvimTreeToggle",
 
   config = function()
     local function on_attach(bufnr)

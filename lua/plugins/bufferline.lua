@@ -1,6 +1,7 @@
 return {
   "akinsho/bufferline.nvim",
   version = "*",
+  event = "BufWinEnter",
   dependencies = { "nvim-tree/nvim-web-devicons" },
 
   config = function()
@@ -26,9 +27,9 @@ return {
         --- bufferline so use this at your discretion knowing that it has
         --- some limitations that will *NOT* be fixed.
         name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-          -- remove extension from markdown files for example
+          -- remove extension from markdown files
           if buf.name:match("%.md") then
-            return vim.f.fnamemodify(buf.name, ":t:r")
+            return vim.fn.fnamemodify(buf.name, ":t:r")
           end
         end,
         max_name_length = 18,
